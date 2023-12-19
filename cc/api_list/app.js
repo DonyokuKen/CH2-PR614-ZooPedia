@@ -1,42 +1,42 @@
 const express = require('express');
+const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
-const fs = require('fs');
 
 const app = express();
-const PORT = 3000; // Choose a suitable port
 
-app.use(express.json());
+// Multer storage configuration
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-app.post('/predict', async (req, res) => {
+// POST endpoint to handle file uploads and forward them
+app.post('/predict', upload.single('uploaded_file'), async (req, res) => {
   try {
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).json({ error: 'Uploaded file is missing' });
+    if (!req.file) {
+      return res.status(400).send('No file uploaded');
     }
 
-    const file = req.files['file']; // Assuming the uploaded file is sent as 'file'
-
+    // Create form data
     const formData = new FormData();
-    formData.append('uploaded_file', fs.createReadStream(file.tempFilePath)); // Adjust 'uploaded_file' to match the field name expected by FastAPI
-
-    const fastAPIResponse = await axios.post('http://localhost:8080/predict', formData, {
-      headers: formData.getHeaders()
+    formData.append('uploaded_file', req.file.buffer, {
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
     });
 
-    const predictionData = fastAPIResponse.data;
-    return res.json(predictionData);
-  } catch (error) {
-    console.error('Error:', error);
+    // Forward the file to another endpoint
+    const response = await axios.post('https://festpi-5jpwdiy2zq-uc.a.run.app/predict', formData, {
+      headers: formData.getHeaders(),
+    });
 
-    if (error.response) {
-      const { status, data } = error.response;
-      return res.status(status).json(data);
-    } else {
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
+    // Send the response from the other endpoint back to the client
+    return res.send(response.data);
+  } catch (error) {
+    console.error('Error:', error.message);
+    return res.status(500).send('Internal Server Error');
   }
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Express server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

@@ -1,17 +1,17 @@
-# Use the official Python image as the base image
-FROM python:3.9-slim
+FROM python:3.10.3-slim-buster
 
-# Set the working directory in the container
-WORKDIR /app
+WORKDIR /workspace
 
-# Copy the application files to the container
-COPY . /app
+COPY requirements.txt requirements.txt
 
-# Install necessary Python packages
-RUN pip install --no-cache-dir fastapi uvicorn opencv-python-headless tensorflow
+RUN pip install -r requirements.txt
 
-# Expose the necessary port
+COPY . .
+
+ENV PYTHONUNBUFFERED=1
+
+ENV HOST 0.0.0.0
+
 EXPOSE 8080
 
-# Command to run the FastAPI application using uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["python", "main.py"]
