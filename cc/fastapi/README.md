@@ -14,3 +14,6 @@ This API endpoint allows users to perform predictions by uploading a file.
 **Request Body**</br>
         Key: uploaded_file</br>
         Type: File
+
+**Interactive Documentation**</br>
+Visit https://api-predict-el7xmjzuqa-uc.a.run.app/docs </br>to access the interactive API documentation.
