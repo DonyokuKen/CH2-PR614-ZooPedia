@@ -29,69 +29,69 @@
 </br>
         
 **Description**
-paths:
-  /:
-    get:
-      summary: Get all animals
-      operationId: getAnimals
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              example: |
-                [
-                  {
-                    "name": "Lion",
-                    "class": "Mammalia"
-                  },
-                  {
-                    "name": "Eagle",
-                    "class": "Aves"
-                  },
-                  ...
-                ]
+</br>paths:
+  </br>/:
+    </br>get:
+      </br>summary: Get all animals
+      </br>operationId: getAnimals
+      </br>responses:
+        </br>'200':
+          </br>description: Successful response
+         </br> content:
+            </br>application/json:
+              </br>example: |
+             </br>   [
+                 </br> {
+                  </br>  "name": "Lion",
+                 </br>   "class": "Mammalia"
+               </br>   },
+                </br>  {
+                </br>    "name": "Eagle",
+               </br>     "class": "Aves"
+               </br>   },
+              </br>    ...
+             </br>   ]
 
-  /verte:
-    get:
-      summary: Get animals by vertebrata
-      operationId: getAnimalsByVertebrata
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              example: |
-                [
-                  {
-                    "name": "Dog",
-                    "class": "Mammalia"
-                  },
-                  {
-                    "name": "Snake",
-                    "class": "Reptilia"
-                  },
-                  ...
-                ]
+</br>  /verte:
+</br>    get:
+ </br>     summary: Get animals by vertebrata
+  </br>    operationId: getAnimalsByVertebrata
+   </br>   responses:
+   </br>     '200':
+    </br>      description: Successful response
+      </br>    content:
+       </br>     application/json:
+         </br>     example: |
+          </br>      [
+           </br>       {
+             </br>       "name": "Dog",
+             </br>       "class": "Mammalia"
+             </br>     },
+              </br>    {
+               </br>     "name": "Snake",
+              </br>      "class": "Reptilia"
+               </br>   },
+              </br>    ...
+             </br>   ]
 
-  /inverte:
-    get:
-      summary: Get animals by invertebrata
-      operationId: getAnimalsByInvertebrata
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              example: |
-                [
-                  {
-                    "name": "Butterfly",
-                    "phylum": "Arthropoda"
-                  },
-                  {
-                    "name": "Snail",
-                    "phylum": "Mollusca"
-                  },
-                  ...
-                ]
+ </br> /inverte:
+  </br>  get:
+   </br>   summary: Get animals by invertebrata
+   </br>   operationId: getAnimalsByInvertebrata
+    </br>  responses:
+    </br>    '200':
+      </br>    description: Successful response
+      </br>    content:
+      </br>      application/json:
+        </br>      example: |
+         </br>       [
+          </br>        {
+           </br>         "name": "Butterfly",
+           </br>         "phylum": "Arthropoda"
+            </br>      },
+              </br>    {
+                 </br>   "name": "Snail",
+               </br>     "phylum": "Mollusca"
+             </br>     },
+            </br>      ...
+             </br>   ]
