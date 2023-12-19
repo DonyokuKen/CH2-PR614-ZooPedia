@@ -3,8 +3,8 @@ const app = express();
 
 app.use(express.json());
 
-const animalsRoutes = require('./api/routes/animals');
-app.use('/animals', animalsRoutes);
+const animalsRoutes = require('./routes/getAnimals');
+app.use('/getAnimals', animalsRoutes);
 
 app.use(
     express.urlencoded({
