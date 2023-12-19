@@ -1,25 +1,26 @@
 const express = require('express');
 const axios = require('axios');
-const FormData = require('form-data');
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const uploaded_file = req.files['uploaded_file']; // Assuming the uploaded file is sent as 'uploaded_file'
-
-    if (!uploaded_file) {
-      return res.status(400).json({ error: 'Uploaded file data is missing' });
+    if (!req.file) {
+      return res.status(400).json({ error: 'Uploaded file is missing' });
     }
 
     const formData = new FormData();
-    formData.append('uploaded_file', uploaded_file.data, {
-      filename: uploaded_file.name,
-      contentType: uploaded_file.mimetype,
+    formData.append('uploaded_file', req.file.buffer.toString('base64'), {
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
     });
 
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+
     const fastAPIResponse = await axios.post('http://localhost:8080/predict', formData, {
-      headers: formData.getHeaders()
+      headers: headers,
     });
 
     const predictionData = fastAPIResponse.data;
