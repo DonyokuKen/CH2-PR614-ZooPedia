@@ -5,7 +5,7 @@ Endpoint
 
 #### API Predict
 
-```http
+```
   https://api-predict-el7xmjzuqa-uc.a.run.app/predict
 ```
 
@@ -17,7 +17,7 @@ Endpoint
 
 #### Get All Animals
 
-```http
+```
   https://animal-api-el7xmjzuqa-uc.a.run.app/getAnimals
 ```
 
