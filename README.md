@@ -13,6 +13,33 @@ Endpoint
 | :--------    | :--------             | :-------          | :-------|
 | `POST`       | `multipart/form-data` | `uploaded_file`   | `Files` |
 
+POST - Response Code: 200
+```http
+    {  
+        "status": {
+            "code":200,
+            "data":
+                     "prediction_class": "cane",
+                     "prediction": "dog"
+            },
+    }
+```
+
+Error Endpoint Type
+```http
+    {
+      "code": "404"
+      "message": "No data found"
+    }
+```
+
+Error Connection To Database
+```http
+    {
+      "code": "500"
+      "message": "Internal Server Error"
+    }
+```
 
 
 #### Get All Animals
