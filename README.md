@@ -18,14 +18,14 @@ Endpoint
 #### Get All Animals
 
 ```
-  https://animal-api-el7xmjzuqa-uc.a.run.app/getAnimals
+  https://animal-api-el7xmjzuqa-uc.a.run.app/
 ```
 
-| Method      | paths:         |
-| :--------   | :--------      |
-| `GET`       | `/`            | 
-| `GET`       | `/verte`       | 
-| `GET`       | `/inverte`     | 
+| Method      | paths:                    |
+| :--------   | :--------                 |
+| `GET`       | `/getAnimals`             | 
+| `GET`       | `/getAnimals/verte`       | 
+| `GET`       | `/getAnimals/inverte`     | 
 
 #### 
 
